@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 224 71% 4%; /* #020817 */
+  --foreground: 210 40% 98%; /* #fafafa */
+
+  --card: 224 71% 4%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 224 71% 4%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 173 80% 40%; /* Teal */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 45 93% 47%; /* Gold */
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 173 80% 40%;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 224 71% 4%;
+  --foreground: 210 40% 98%;
+
+  --card: 224 71% 4%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 224 71% 4%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 173 80% 40%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 45 93% 47%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 173 80% 40%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.text-glow {
+  text-shadow: 0 0 8px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 8px hsl(var(--secondary) / 0.5), 0 0 20px hsl(var(--secondary) / 0.3);
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-teal-400 to-emerald-500;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.floating-whatsapp {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+  color: white;
+}
+
+.glass-card {
+  background: hsl(var(--muted) / 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.3);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: hsl(var(--muted) / 0.4);
+  border-color: hsl(var(--primary) / 0.5);
+  transform: translateY(-5px);
+}
+
+.aurora-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+@keyframes move-aurora {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.5); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+}
+
+.aurora-bg::before, .aurora-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vw;
+  height: 120vw;
+  mix-blend-mode: screen;
+  animation: move-aurora 60s linear infinite;
+  opacity: 0.15;
+}
+
+.aurora-bg::before {
+  background: radial-gradient(circle, hsl(var(--primary)) 0%, transparent 50%);
+  animation-duration: 40s;
+}
+
+.aurora-bg::after {
+  background: radial-gradient(circle, hsl(var(--secondary)) 0%, transparent 60%);
+  animation-duration: 50s;
+  animation-direction: reverse;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white transition-all duration-200 bg-teal-500 border border-transparent rounded-full hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white transition-all duration-200 bg-transparent border-2 border-teal-500 rounded-full hover:bg-teal-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500;
+}
